@@ -1,0 +1,188 @@
+\chapter{Praktická část}
+    V této kapitole se budu věnovat postupem návrhu a výroby od samého začátku až do konečné fáze projektu. Zaměřím se na konstrukční, elektrickou i programovou část projektu a zmíním funkce, části a vlastnosti, se kterými jsem spokojený. Pozastavíme se i nad chybami, kterých nebylo málo a věcmi, které by se daly v budoucnu vylepšit.
+
+    \section{Konstrukční část} \label{KonstCast}
+        Jako všechny ostatní části se i konstrukční dělí na vnitřní a venkovní. V této podkapitole podrobně popíši postup návrhu, výroby i sestavení všech dílčích částí meteostanice. Při návrhu všech 3D objektů a sestav jsem pracoval v programu Autodesk Fusion 360 verze 2.0.18460~\cite{AutodeskFusion360} a všechny 3D-tištěné díly jsem navrhnul a vymodeloval. Stažené modely jsou pouze kabelové průchodky, oba mikrokontrolery ESP32, BMP280, DHT22 a MH-Z19B.
+
+        \begin{figure}[htb]
+        \resizebox{13cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/VnitrniKrabicka.png}}
+        \caption{Krabička vnitřní jednotky meteostanice}
+        \label{Krab}
+        \end{figure}
+
+        Pro vnitřní jednotku jsem vyráběl jen jednu verzi krabičky, kterou lze vidět na obrázku~\ref{Krab}. Při testování na nepájivém poli a testování různých verzí plošných spojů jsem pracoval bez konstrukčních prvků (bez krabičky). Návrh krabičky mi zabral poměrně dost času, hlavním problémem bylo umístění a přidělání displeje, protože je tenký a křehký. 3D tištěné díly bylo potřeba obrousit a upravit, ale s tím jsem musel počítat. Krabička se skládá ze 3 částí – samotná krabička, díl pro uchycení displeje a víko. V krabičce i ve víku jsou větrací otvory pro proudění vzduchu kvůli senzoru $CO_2$ a senzoru teploty. Dále se zde nachází otvor pro napájecí kabel microUSB, otvor pro budoucí připojení externího NTC čidla teploty, pro které ale zatím není uzpůsoben program a otvor pro vložení microSD karty. Sloupky, na které se přišroubuje deska plošných spojů, jsou zde kvůli uspořádání součástek na plošném spoji pouze tři. Pro díry ve sloupcích je nutné zvolit menší průměr, aby se při šroubování mohl vytvořit závit. Všechny tři části vnitřní krabičky jsem tisknul z černého materiálu PLA, protože je dostupný a jeho vlastnosti na toto využití postačí. Následně jsem ořezal a~obrousil místa, která do sebe mají pasovat, a vše poskládal.
+
+        Pro konsrukci venkovní části meteostanice jsem kvůli jejich lehkosti, pevnosti a odolnosti proti korozi zvolil duté čtyřhranné hliníkové tyče o délce strany 15 mm a tloušťce hliníku 1 mm. Z takovýchto 5 různě dlouhých tyčí je tvořena základní kostra meteostanice, na kterou je přidělána ústředna a~jednotlivé prvky se senzory. Hliníkové tyče jsou k sobě přišroubovány pozinkovanými šrouby a samojistnými maticemi M5. Pro možnost lepšího utáhnutí jsem použil i pozinkované podložky. Vrstva zinku chrání šrouby, matice a~podložky před korozí. Kostra z dutých hliníkových tyčí umožňuje vedení vodičů uvnitř konstrukce, díky tomu jsou chráněny před deštěm a UV zářením a přispívá to k čistějšímu vzhledu. Konce hliníkových tyčí jsou opatřeny tištěnými plastovými krytkami.
+        \newpage
+
+        \subsection{Ústředna}    
+            Ústřednu tvoří bílá vodotěsná instalační krabice S-BOX 416 o rozměrech 190 x 140 x 70 mm se stupněm krytí IP 65, tudíž je elektronika uvnitř chráněna před UV zářením, prachovými částicemi a samozřejmě před deštěm. Pro vstup vodičů do ústředny jsem zvolil kabelové průchodky M20, které se dají utáhnout a brání tak vniku vody a vlhkosti do krabice. Pro tyto průchodky bylo potřeba vyvrtat 2 otvory o průměru 20 mm. Ústředna je k hliníkové konstrukci přidělána pozinkovanými šrouby M5 s těsnící páskou. Pro upevnění elektronických komponent do krabice jsem navrhl desku s otvory na šroubky, sloupky pro přidělání plošného spoje a otvory na stahovací pásky, kterými se upevní akumulátor a kabely, viz obrázek~\ref{Deska}. Tato deska je také vytištěna na 3D tiskárně z bílého materiálu PETG.
+
+            \begin{figure}[htb]
+            \resizebox{10cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/DeskaProUpevneniElektroniky.png}}
+            \caption{Deska pro upevnění elektroniky}
+            \label{Deska}
+            \end{figure}
+
+        \subsection{Uchycení solárního panelu}
+            Solární panel je důležité umístit tak, aby byl chráněn před deštěm a kroupami, ale také aby se k němu dostávalo co nejvíce světla po co nejdelší dobu. Pro přidělání solárního panelu jsem použil 3D tištěné komponenty, plexisklo o~tloušťce 3 mm, pozinkované šrouby, matičky a podložky. Celá sestava je na obrázku~\ref{SestavaPanel}. Do hlavního plastového dílu jsem vložil panel a protáhl kabel otvorem. Na tento hlavní díl jsem lepidlem na plexisklo přilepil obdélník plexiskla vyřezaný na laseru. Po zaschnutí lepidla jsem mohl protáhnout kabel hliníkovou konstrukcí a kabelovou průchodkou až do instalační krabice a přichytit panel ve vyrobeném krytu na vrchní vodorovnou tyč pomocí tištěných dílů (obrázek~\ref{DilyPanel}) a čtyř šroubů. Panel je od konstrukce nakloněný pod úhlem 45°, což asi vzhledem k pozdějšímu umístění meteostanice není nejlepší možný úhel, ale je to takhle konstrukčně jednodušší. Pro pevnost uchycení je důležité, aby se díl, který objímá tyč zespoda tisknul bokem (tak aby síla při dotáhnutí šroubů neodtahovala jednotlivé vrstvy od sebe).
+
+            \begin{figure}[htb]
+            \resizebox{10cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/SestavaKrytuNaPanel.png}}
+            \caption{Sestava krytu na panel}
+            \label{SestavaPanel}
+            \end{figure}
+
+            \begin{figure}[htb]
+            \resizebox{6cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/UchyceniPanelu.png}}
+            \caption{Díly pro uchycení panelu na konstrukci}
+            \label{DilyPanel}
+            \end{figure}
+
+        \clearpage
+
+        \subsection{Konstrukční/mechanická část anemometru}
+            Anemometr (obrázek~\ref{Anemometr}) je součást meteostanice, která měří rychlost větru. Skládá se ze: 3 tištěných dílů, ložiska, senzoru a dvou neodymových magnetů o~rozměrech 3 x 2,5 x 1 mm. Rotační část tvoří vrtulka se třemi kulovými kalíšky, které mají díky svému tvaru menší odpor vzduchu ve směru otáčení, než proti směru. Zevnitř rotační části se nachází magnety umístěné naproti sobě. U anemometru je důležité, aby byl umístěný v prostoru kvůli otáčení vrtulky. Při navrhování vrtulky jsem nejprve zvolil vzdálenost kalíšků od středu 35~mm a jejich vnitřní poloměr 12 mm. To se později ukázalo jako neefektivní a pro druhý a zároveň poslední model vrtulky jsem použil vzdálenost kalíšků od středu 60 mm a jejich vnitřní poloměr 20 mm. S~výsledkem jsem spokojený, vrtulka je v rámci možností pevná a točí se s~poměrně malým odporem. Pod rotační částí se nachází pevný díl se senzorem, ze stran utěsněným silikonem proti vodě. Tento pevný díl, na kterém je nasazené ložisko s rotační částí, je stahovacími páskami připevněn k vrchní vodorovné tyči konstrukce. Vnitřkem pevné části anemometru prochází kabel od senzoru, který z vrchu vstupuje do hliníkové konstrukce, prochází až k~instalační krabici a vstupuje kabelovou průchodkou k řídicí jednotce.
+
+            \begin{figure}[htb]
+            \resizebox{10cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/Anemometr.png}}
+            \caption{Anemometr}
+            \label{Anemometr}
+            \end{figure}
+
+        \clearpage
+
+        \subsection{Radiační kryt}
+            Radiační kryt, který můžete vidět na obrázcích~\ref{RadSestava},~\ref{RadPostup} a~\ref{RadVysledek} chrání senzor teploty a vlhkosti před slunečním zářením a před deštěm. Je navržen tak, aby v něm bylo možné měřit teplotu s co nejmenší chybou, i když je na slunci. Pro jeho výrobu jsem použil závitovou tyč M4, kterou jsem nařezal na 3 stejně dlouhé kusy po 10 cm a plastové kruhové díly vytisknuté z bílého PETG. Tyto plastové „lamely“ musí být  navrženy tak, aby dostatečně chránily senzor před slunečním zářením a před deštěm, ale aby jimi zároveň co nejlépe proudil vzduch. Závitové tyče jsou upevněny k vrchní stříšce a na ně se postupně navlékají kruhové obroučky střídavě s distančními sloupky. Místo jednoho sloupku jsem umístil úchyt s otvorem pro přidělání senzoru. Jako poslední je navlečený díl pro uchycení k horní tyči konstrukce a vše je utáhnuto samojistnými maticemi. Spodní díl je ke konstrukci stejně jako anemometr přidělán dvěma stahovacími páskami.
+
+            \newpage
+
+            \begin{figure}[htb]
+            \resizebox{3.5cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/RadiacniKrytSestava.png}}
+            \caption{Radiační kryt: sestava}
+            \label{RadSestava}
+            \end{figure}
+
+            \begin{figure}[htb]
+            \resizebox{3.5cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/RadiacniKrytVyroba.jpg}}
+            \caption{Radiační kryt: postup výroby}
+            \label{RadPostup}
+            \end{figure}
+
+            \begin{figure}[htb]
+            \resizebox{3.5cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/RadiacniKrytVysledek.jpg}}
+            \caption{Radiační kryt: výsledek}
+            \label{RadVysledek}
+            \end{figure}
+
+    \clearpage
+
+    \section{Elektrická část} \label{ElCast}
+        Tato kapitola se zabývá výběrem, návrhem a realizací všech elektronických komponent vnitřní i venkovní jednotky meteostanice. Při návrhu plošných spojů jsem pracoval v programu KiCad 7.0~\cite{KiCad} a při jejich výrobě v učebně 124. Plošným spojům však předcházelo testování na nepájivém poli, viz obrázek~\ref{NepajivePole}. V následujících podkapitolách podrobně popíši postup při výrobě jednotlivých elektrických částí.
+
+        \begin{figure}[htb]
+        \resizebox{12cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/ZapojeniNaNepajivemPoli.jpg}}
+        \caption{Zapojení na nepájivém poli}
+        \label{NepajivePole}
+        \end{figure}
+
+        \subsection{Vnitřní jednotka} \label{ElVnitrniJednotka}
+            Elektroniku vnitřní jednotky tvoří plošný spoj, na kterém se nachází hlavní řídicí jednotka ESP32s3, rádiový přijímač NiceRF 433 MHz, senzor $CO_2$, senzor teploty a vlhkosti, modul pro mikroSD kartu, vývody pro displej a konektor pro budoucí připojení externího NTC čidla teploty. ESP32s3 jsem zvolil jako hlavní řídicí jednotku kvůli jeho dostatečnému počtu pinů, možnosti připojení k wifi a dalším funkcím. Pro měření koncentrace $CO_2$ ve vzduchu jsem pořídil MH-Z19B hlavně kvůli jeho dostupnosti a rozsahu měření (0 až 5000 ppm). Dále jako modul měření teploty a vlhkosti jsem vybral AHT21, protože je dostatečně přesný, malý a komunikuje přes sběrnici I$^2$C. Komunikaci mezi vnitřní a venkovní jednotkou zajišťují rádiové moduly NiceRF 433 MHz. Pro tuto aplikaci jsou ideální díky svému dosahu a nízké spotřebě. Displej jsem zvolil typu E-ink, konkrétně 3,7" GDEY037T03, protože se mi líbí a myslím, že se pro tento projekt hodí. Detailně jsem tento typ displejů popisoval v kapitole~\ref{EinkKapitola} s názvem E-ink displeje.
+
+            Plošných spojů do vnitřní části jsem vyráběl několik verzí, vždy jsem něco přidal, nebo změnil rozvržení součástek. Většinu plošných spojů jsem leptal. Vyzkoušel jsem i vyrábění na frézce, ale leptané spoje se ukázaly jako lepší a spolehlivější. Poslední a použitá verze je na obrázcích~\ref{DPSosazena} a \ref{DPSpajeni}. Detailnější informace ke všem použitým plošným spojům naleznete v příloze pod názvem Dokumentace DPS.
+
+            \begin{figure}[htb]
+            \resizebox{8cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/OsazenaDPSvnitrni.jpg}}
+            \caption{Osazená DPS}
+            \label{DPSosazena}
+            \end{figure}
+
+            \begin{figure}[htb]
+            \resizebox{8cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/OsazenaDPSzeStranyPajeniVnitrni.jpg}}
+            \caption{Osazená DPS ze strany pájení}
+            \label{DPSpajeni}
+            \end{figure}
+
+        \clearpage
+
+        \subsection{Venkovní jednotka}
+            Elektroniku ve venkovní části řídí mikrokontroler ESP32c3, který je umístěný na plošném spoji spolu s modulem pro nabíjení akumulátoru ze solárního panelu a napájení 5 V. Dále se tam nachází senzor tlaku a teploty BMP280, rádiový vysílač NiceRF 433 MHz a trubičková pojistka na 200 mA. Všechny moduly jsou na desku připojené přes DuPont dutinkové lišty, aby se daly v~případě potřeby vyjmout nebo vyměnit. Zjistil jsem, že obyčejné trubičkové pojistky na nižší proud (např. na 40 mA) mají odpor kolem 70 Ω, takže jsou při tak malém napětí nepoužitelné. Venkovní jednotka odebírá při DeepSleep módu kolem 9 mA, v normálním režimu 34–36 mA a při odesílání dat, což trvá méně než 1 s, je nejvyšší proud 60 mA. Dále jsou na plošném spoji JST konektory pro připojení akumulátoru a NTC čidla pro měření teploty. Ani v této jednotce však není program připravený na jeho použití, ale tady k~tomu nevidím zásadní důvod. Vodiče z anemometru, senzoru DHT22 a ze solárního panelu jsou připojeny do dvou a tří pinových svorkovnic s roztečí 2,54 mm. Kabely pro komunikaci s anemometrem a senzorem DNT22 jsem použil CAT5e UTP a přebytečné vodiče nejsou nikam zapojeny. Akumulátor se skládá ze 6 Li-ion článků SE US18650GR o udávané kapacitě $2600$ mAh. Při průměrném odběru 13 mA by měla venkovní jednotka teoreticky vydržet bez nabíjení 50 dní. Reálně se dá počítat tak s polovinou, i kvůli tomu, že články nejsou nové, ale i tak si myslím, že je to dostačující. Na obrázku~\ref{Ustredna} lze vidět celou ústřednu s elektronikou a akumulátorem. Dále pak na obrázcích~\ref{A3144} a \ref{DHT22} zapojení anemometru a DHT22. Pro snímání magnetů v anemometru jsem použil Hallův senzor A3144 a oproti zapojení na obrázku 5.13 je napájený 3,3 V místo 5 V.
+
+            \begin{figure}[htb]
+            \resizebox{12cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/Ustredna.jpg}}
+            \caption{Ústředna}
+            \label{Ustredna}
+            \end{figure}
+
+            \begin{figure}[htb]
+            \resizebox{10cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/A3144Zapojeni.jpg}}
+            \caption{Vzorové zapojení senzoru A3144~\cite{A3144Hall}}
+            \label{A3144}
+            \end{figure}
+
+            \begin{figure}[htb]
+            \resizebox{12cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/DHT22naDPS.jpg}}
+            \caption{Plošný spoj s DHT22 a rezistorem}
+            \label{DHT22}
+            \end{figure}
+
+        \clearpage
+
+    \section{Programová část} \label{PrgCast}
+        Programování meteostanice mi ze všech částí jednoznačně zabralo nejvíce času. Nejdříve jsem testoval různé prvky a senzory zvlášť a po nějaké době je dával dohromady s dalšími. Při programování mi hodně pomohlo rozdělení programu do více souborů, bez toho si to už ani nedokáži představit. Hlavně u vnitřní jednotky je kód už poměrně veliký. Při programování jsem využíval Arduino IDE 2.3.2~\cite{ArduinoIDE}, při kreslení a generování souborů pro displej Adobe Illustrator 2023~\cite{Illustrator} a Image2Lcd~\cite{Image2Lcd}. V následujících podkapitolách se pokusím popsat fungování programu a jeho tvorbu.
+
+        \subsection{Program venkovní jednotky}
+            Začnu programem běžícím na venkovním ESP32c3, protože je jednodušší. K~hlavnímu souboru jsou připojeny 3 hlavičkové soubory – jeden pro BMP280 a DHT22, druhý pro rádiový modul a třetí obsahuje funkce pro výpočet rychlosti větru podle pulzů z anemometru. Při každém pulzu se zaznamenává pouze nástupná hrana. Měření rychlosti větru trvá obvykle 1 minutu. Pokud však není zaznamenán žádný impulz po dobu 30 sekund, měření se přeruší kvůli úspoře akumulátoru, odešlou se data a ESP32c3 se přepne do režimu spánku. Během měření se zaznamenává počet pulzů a doba mezi nimi. Z~nejkratší doby mezi pulzy se na konci vypočítá nejsilnější náraz větru. Po uplynutí jedné minuty se vypočítá průměrná doba mezi pulzy a z ní průměrná rychlost větru. Tato vypočítaná rychlost je však pouze teoretická. V reálném prostředí totiž nikdy nebude rychlost otáčení vrtulky stejná, jako rychlost větru. Proto se používá kalibrační konstanta, kterou lze vypočítat z vlastností vrtulky a vzduchu (například hmotnost a tvar vrtulky, hustota vzduchu, relativní vlhkost vzduchu, atmosférický tlak a další. Tento výpočet je však poněkud komplikovaný, proto jsem tuto konstantu určil pomocí vypůjčeného měřícího přístroje. Více o této kalibraci popíši v kapitole~\ref{Vyhodnoceni} s názvem Vyhodnocení. Pro senzory teploty, vlhkosti a tlaku používám knihovny Wire.h~\cite{Wire}, \hbox{Adafruit\_Sensor.h}~\cite{AdafruitSensor}, \hbox{Adafruit\_BMP280.h}~\cite{AdafruitBMP280Library} a~DHT.h~\cite{DHTsensorLibrary}, Pro rádiovou komunikaci potom \hbox{RH\_ASK.h}~\cite{RHASK}.
+
+            Na začátku programu jsou zahrnuté všechny hlavičkové soubory a je zde definovaný čas pro hluboký spánek. Dále jsou deklarovány proměnné pro naměřené hodnoty datového typu float a následuje samotná funkce void setup(), ve které se na začátku nastaví potřebné piny jako vstupy. Spustí se funkce \hbox{bmp\_dht\_SETUP()}, ve které se zahájí komunikace přes I$^2$C a zkontroluje připojení senzorů BMP280 a DHT22. Následuje podobná funkce \hbox{NiceRF\_SETUP()}, v níž se inicializuje rádiový modul pro vysílání. Dále je na řadě funkce ReadWindSpeed(), ve které se po nastavený čas \hbox{READING\_TIME} zaznamenávají nástupné hrany pulzů ze senzoru A3144 a~doba mezi nimi. Po uplynutí nastaveného času se vypočítá průměrná rychlost větru. Během nastaveného času se také ukládá nejkratší doba mezi pulzy (náraz větru). Za funkcí ReadWindSpeed() už je jen ReadSendData(), kde se naměří data z ostatních senzorů a napětí akumulátoru a vše se odešle přes rádiový modul funkcemi radioSend() s parametry. První parametr datového typu char je znak, který slouží k rozpoznání hodnoty ve vnitřní jednotce, každá hodnota má jiný znak (a až g). Druhý parametr datového typu float nese naměřenou nebo v případě napětí akumulátoru a rychlosti větru vypočítanou hodnotu. Nyní je vše naměřeno a odesláno, takže už se jen nastaví časovač pro vzbuzení a ESP se přepne do režimu hlubokého spánku. Po uběhnutí časovače se vzbudí a celá funkce void setup() proběhne znovu. Funkce void loop() v~tomto programu není využita (je prázdná).
+
+            \newpage
+
+        \subsection{Program vnitřní jednotky}
+            V programu vnitřní jednotky se  zpracovávají všechna data, ať už byla naměřena venku či vevnitř. Běží zde webserver, data se zapisují na mikroSD kartu a~vypisují se na displej. Zatímco na webserveru najdete veškerá data, se kterými meteostanice pracuje (kromě historie, která je na paměťové kartě), na displeji jsou pouze 4 základní hodnoty. To by se určitě dalo vylepšit větším displejem, kvůli ceně jsem ale vybral menší, 3,7" (konkrétněji v~kapitole~\ref{ElVnitrniJednotka} pod názvem Vnitřní jednotka). Na displeji se tedy zobrazují pouze: teplota uvnitř, teplota venku, koncentrace $CO_2$ a atmosférický tlak přepočtený na hladinu moře (viz obrázek~\ref{Displej}).
+
+            Celý program je rozdělen do 11 souborů. 5 z nich je určeno displeji, 1 pro webserver, 1 pro získávání času a funkce pro zápis na SD. Další pro rádiovou komunikaci a nakonec AHT21.h a MH-Z19B.h pro obsluhu senzorů. V celém kódu používám celkem 14 knihoven: Arduino.h, která je součástí Arduino IDE~\cite{ArduinoIDE}, SPI.h~\cite{SPI} pro komunikaci přes SPI, WiFi.h~\cite{WiFi}, WiFiClient.h~\cite{WiFiClient}, WebServer.h~\cite{WebServer}, ESPmDNS.h~\cite{ESPmDNS} a HTTPClient.h~\cite{HTTPClient} pro wifi a~webserver, FS.h~\cite{FS} a SD.h~\cite{SD} pro zápis na SD, time.h~\cite{time} pro získávání času ze vzdáleného serveru. \hbox{RH\_ASK.h}~\cite{RHASK} pro rádiový přijímač NiceRF, ErriezMHZ19B.h~\cite{ErriezMHZ19B} pro senzor $CO_2$ a Wire.h~\cite{Wire} a AHTxx.h~\cite{AHTxx} pro komunikaci se senzorem AHT21.
+
+            Na začátku hlavního souboru INO jsou zahrnuté všechny hlavičkové soubory. Následuje deklarace a definice některých proměnných, většina proměnných je ale deklarována v příslušných hlavičkových souborech. Ve funkci void setup() je zahájení sériové komunikace a inicializace senzorů, modulů a funkcí. Například \hbox{microSD\_SETUP()} zkontroluje přítomnost paměťové karty, zahájí komunikaci přes SPI a vytvoří soubor info.txt (obrázek~\ref{Info}), ve kterém je ukázáno pořadí zápisu jednotlivých hodnot do souborů. Po provedení všech funkcí s názvem končícím \hbox{\_SETUP} se funkcemi \hbox{read\_Data()} a \hbox{write\_Data()} přečtou hodnoty ze senzorů umístěných ve vnitřní jednotce a zapíšou se na paměťovou kartu. Funkce casZapnuti() zapíše datum a čas spuštění pro průběžné zobrazení na webserveru. Dále proběhne nastavení vstupních a~výstupních pinů pro displej (v kódu je popisován jako EPD – Electronic Paper Display). Následuje překreslení displeje nejprve na bílou obrazovku a poté na pozadí (obrázek~\ref{Pozadi}). Zbývá jen nastavit interrupt pro příjem dat z~rádiového modulu funkcí attachInterrupt(). Funkce Alojz() zakončující void setup() načte jednoduchou předpověď z nadšeneckého projektu Alojz.cz~\cite{Alojz}.
+
+            Ve funkci void loop() se jednou za určený čas naměří data ze senzorů a~aktualizují se na displeji a webserveru. Pokud přijdou nová data z venkovní jednotky, přečtou se data z vnitřních senzorů a zase se zapíší na webserver a~paměťovou kartu. V průběhu funkce void loop() se kontroluje webserver, aby nedocházelo k delším prodlevám.
+
+            Při programování vnitřní jednotky mi nejdéle zabralo zprovoznění displeje, protože jsem k němu nenašel žádnou grafickou knihovnu a ukázkový kód od GoodDisplay~\cite{EpaperLibrary} uměl vypisovat jen jednu číslici na jednom místě. Nějakou dobu mi trvalo, než jsem kód alespoň z části pochopil a než jsem upravil a~dopsal funkce, které vypisují čísla. Další výzvou bylo vypisování proměnných datového typu float. Hodnoty se tedy vypisují na určené souřadnice a nadpisy a jednotky jsou zakomponovány do pozadí, viz obrázek~\ref{Pozadi}. Pozadí jsem nejprve nakreslil v programu Adobe Illustrator 2023~\cite{Illustrator} a exportoval jako bitmapu. Poté jsem v programu Image2Lcd~\cite{Image2Lcd} z bitmapy vygeneroval textový soubor s polem hexadecimálních hodnot, který se jen zkopíruje do hlavičkového souboru Pictures.h.
+
+            \begin{figure}[htb]
+            \resizebox{10cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/PozadiDispleje.png}}
+            \caption{Pozadí displeje meteostanice}
+            \label{Pozadi}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            \resizebox{10cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/DisplejShodnotami.jpg}}
+            \caption{Displej s vykreslenými hodnotami}
+            \label{Displej}
+            \end{figure}
+
+        \clearpage
+
+            Další část programování, se kterou jsem strávil dost času bylo zapisování dat na paměťovou kartu. To probíhá ve funkci \hbox{write\_Data()}, kde se funkcí getTime() nejdříve zjistí a zapíše datum a čas. Funkce getTime() také vytvoří cestu a název souboru, protože soubory se jmenují dle data (například \hbox{23\_02\_2024.txt)} a nachází se ve složkách s názvem podle měsíce a roku. Na každý měsíc tedy připadá jedna složka. Po funkci getTime() se všechny hodnoty zapíší do proměnné ZAPIS datového typu const char* funkcí sprintf() a proměnná ZAPIS se připíše do souboru za datum a čas. Příklad takového zápisu je na obrázku~\ref{Zapis}. Ve funkci \hbox{write\_Data()} se také přepisují maximální a minimální hodnoty venkovní teploty, vlhkosti a tlaku.
+
+            \begin{figure}[htb]
+            \resizebox{12.5cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/info.png}}
+            \caption{Soubor info.txt}
+            \label{Info}
+            \end{figure}
+
+            \begin{figure}[htb]
+            \resizebox{12.5cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/ZapisDat.png}}
+            \caption{Ukázka zápisu na SD}
+            \label{Zapis}
+            \end{figure}
+
+            Třetí zásadní část programování je funkčnost a vzhled webserveru. Vše týkající se webserveru je v hlavičkovém souboru Webserver.h. Velkou část tohoto souboru tvoří samotný HTML kód a v další části je funkce Alojz(), která získává jednoduchou předpověď počasí. Webová stránka, viz obrázek~\ref{obr:web}, se dělí na 4 bloky hodnot. Hned pod nadpisem se nachází předpověď a~pod předpovědí jsou aktuální data z meteostanice rozdělena do dvou sloupců (vnitřní a venkovní). Ve sloupečku vnitřních hodnot se nachází také indikátor SD karty, pokud je zelený, vše funguje tak, jak má. Červená znamená chybu zápisu, nebo že karta není vložena. Pod aktuálními hodnotami je tabulka maximálních a minimálních hodnot venkovní teploty, vlhkosti a tlaku a dole vlevo jsou základní informace o chodu meteostanice (uběhlý čas od posledního příjmu hodnot z venkovní jednotky, stav akumulátoru a datum spuštění).
+
+            \begin{figure}[htb]
+            \resizebox{12.5cm}{!}{\includegraphics{LaTeX sablona IB/obrazky/Webserver.png}}
+            \caption{Vzhled webové stránky}
+            \label{obr:web}
+            \end{figure}
+
+        \clearpage

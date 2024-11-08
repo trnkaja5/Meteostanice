@@ -1,0 +1,277 @@
+% arara: pdflatex: { synctex: yes }
+% arara: makeindex: { style: ctuthesis }
+% arara: bibtex
+
+% The class takes all the key=value arguments that \ctusetup does,
+% and a couple more: draft and oneside
+\documentclass[twoside]{ctuthesis}
+
+\usepackage[table,xcdraw, dvipsnames]{xcolor}
+\usepackage{tabularray}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{chngcntr}
+\usepackage{wrapfig}
+%\usepackage[none]{hyphenat}
+
+\ctusetup{
+	preprint = \ctuverlog,
+	mainlanguage = czech,	%(Pro angličtinu zvolte "english")
+	title-czech = {Meteostanice},
+	title-english = {Weather station},
+	doctype = M,
+	specialization = E,		% {S, E, IT}
+	author = {Jan Trnka},
+	supervisor = {Ing. Petr Augusta, Ph.D.},
+	keywords-czech = {meteostanice, meteorologie, počasí, teplota, vlhkost, atmosférický tlak, CO2, mikrokontroler, 3D modelování, elektronický papír, zobrazování dat},
+	keywords-english = {weatherstation, meteorology, weather, temperature, humidity, atmospheric pressure, CO2, microcontroller, 3D design, e-paper, data visualization},
+	day = 26,
+	month = 05,
+	year = 2024,
+}
+
+%\usepackage[style=ieee,urldate=comp]{biblatex}
+\usepackage{url}
+\usepackage{csquotes}
+%\addbibresource{Thesis-sources_2.bib}
+
+\ctuprocess
+
+%\usepackage{tabularx, array, booktabs}
+
+\addto\ctucaptionsczech{%
+	\def\supervisorname{Vedoucí}%
+	\def\subfieldofstudyname{Studijní program}%
+}
+
+\ctutemplateset{maketitle twocolumn default}{
+	\begin{twocolumnfrontmatterpage}
+		\ctutemplate{twocolumn.thanks}
+		\ctutemplate{twocolumn.declaration}
+		\ctutemplate{twocolumn.abstract.in.titlelanguage}
+		\ctutemplate{twocolumn.abstract.in.secondlanguage}
+		\ctutemplate{twocolumn.tableofcontents}
+		\ctutemplate{twocolumn.listoffigures}
+	\end{twocolumnfrontmatterpage}
+}
+
+% Theorem declarations, this is the reasonable default, anybody can do what they wish.
+% If you prefer theorems in italics rather than slanted, use \theoremstyle{plainit}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{note}
+\newtheorem*{remark*}{Remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\setlength{\parskip}{2ex plus 0.2ex minus 0.2ex}
+
+% Acknowledgements / Podekovani
+\begin{thanks}
+	Rád bych poděkoval své rodině za morální a finanční podporu. Dále děkuji mému vedoucímu práce Ing. Petru Augustovi, Ph.D. za cenné rady a pomoc kdykoli bylo potřeba. Mé poděkování patří také Filipu Šimurdovi za rady ohledně elektronické části, Adamovi Palečkovi za materiální podporu a Bc. Adamovi Šťastnému za ochotu při vyrábění na frézce.
+	\end{thanks}
+
+% Declaration / Prohlaseni
+\begin{declaration}
+Prohlašuji, že jsem svou maturitní práci vypracoval samostatně a že jsem uvedl veškeré použité informační zdroje (literaturu, projekty, SW, atd.), které jsou uvedené v~seznamu literatury.
+
+\noindent Nemám závažný důvod proti užití tohoto školního díla ve smyslu §\,60 zákona č.~121/2000 Sb., o~právu autorském, o~právech souvisejících s~právem autorským a o~změně některých zákonů (autorský zákon).
+
+\noindent V Praze, březen 2023	
+
+\vskip1cm
+\noindent\dotfill
+\begin{center}Podpis autora práce\end{center}
+
+\end{declaration}
+
+% Abstract in Czech
+\begin{abstract-czech}
+Cílem této práce je navrhnout a zkonstruovat meteostanici s venkovní a vnitřní jednotkou, která měří základní meteorologická data a zpracovává je ve vnitřní jednotce. Data se budou zapisovat na microSD a zobrazovat na displeji a webserveru.
+\end{abstract-czech}
+
+% Abstract in English
+\begin{abstract-english}
+The aim of this project is to design and construct a weather station with both outdoor and indoor units, measuring basic meteorological data and processing it within the indoor unit. The data will be recorded on a microSD card and displayed on a screen and web server.
+\end{abstract-english}
+
+% Only for testing purposes
+\listfiles
+\usepackage[pagewise]{lineno}
+\usepackage{lipsum,blindtext}
+\usepackage{mathrsfs} % provides \mathscr used in the ridiculous examples
+
+\mathcode`\,="013B
+\addto\extrasczech{\def\bibname{Zdroje}\let\refname\bibname}
+
+\begin{document}
+        \maketitle
+
+%	\chapter*{List of Notation}
+
+        \input{uvod}
+        \input{r_meteostanice}
+        \input{r_displeje}
+        \input{r_mereni teploty}
+        \input{LaTeX sablona IB/stanoveni navrhovych parametru}
+        \input{LaTeX sablona IB/prakticka cast}
+        \input{LaTeX sablona IB/vyhodnoceni}
+        \input{LaTeX sablona IB/zaver}
+
+\pagestyle{plain}
+	
+\begin{thebibliography}{99}
+%1
+\bibitem{JakVybratCHytrouMeteostanici} Jiří V. Matýsek. {\it Jak vybrat (chytrou) meteostanici?}. Internetový článek. Dostupné z: \url{https://www.alza.cz/jak-vybrat-chytrou-meteostanici} [cit.~2024-02-28].
+
+%2
+\bibitem{ChytraPetr} Bc. Petr Chytra. {\it Návrh a realizace mobilní meteostanice}. Diplomová práce. Dostupné z: \url{https://theses.cz/id/sv3z0w/Chytra_Petr_2022_DP.pdf} [cit.~2024-02-28].
+
+%3
+\bibitem{Meteostanice} {\it Meteostanice}. Internetový článek. Dostupné z: \url{https://www.alza.cz/meteostanice/18851185.htm} [cit.~2024-02-28].
+
+%4
+\bibitem{HyundayWS2303} {\it Meteorologická stanice Hyundai WS 2303}. Internetová stránka. Dostupné z: \url{https://www.hyundai-electronics.cz/products/meteorologicka-stanice-hyundai-ws-2303-cerna-hyuws2303} [cit.~2024-02-28].
+
+%5
+\bibitem{WS2303Obrazek} {\it Hyundai WS 2303}. Obrázek. Dostupné z: \url{https://www.bscom.cz/meteostanice-hyundai-ws-2303-cerna-hyuws2303_d586073/} [cit.~2024-02-28].
+
+%6
+\bibitem{SWS12500WIFI} {\it SWS 12500 WIFI
+WIFI PROFESIONÁLNÍ METEOROLOGICKÁ STANICE}. Internetová stránka. Dostupné z: \url{https://www.sencor.cz/profesionalni-meteorologicka-stanice/sws-12500?gclid=Cj0KCQjwhL6pBhDjARIsAGx8D5_3TnIyIIkx4KSE45aMHz_K934oUZaL_29lp6ClvO734jhufebWV7waApUaEALw_wcB} [cit.~2024-02-28].
+
+%7
+\bibitem{SWS12500Obrazek} {\it SWS 12500 WIFI}. Obrázek. Dostupné z: \url{https://www.sencor.cz/Sencor/media/static-media/8c5ee219-66e4-4da8-8fc1-e87f2de5c32d@w800.webp} [cit.~2024-02-28].
+
+%8
+\bibitem{DisplejToply} Jan Šimečík. {\it Displej: Jak vlastně funguje a jaké jsou jeho typy a parametry?}. Internetový článek. Dostupné z: \url{https://toply.cz/pojmy/displej/} [cit.~2024-02-28].
+
+%9
+\bibitem{ElektromechanickeDispleje} {\it Elektromechanické displeje}. Internetový článek. Dostupné z: \url{http://www.plc-automatizace.cz/knihovna/hmi/technologie/mechanicke.htm} [cit.~2024-02-28].
+
+%10
+\bibitem{ZobrazovaciJednotky} {\it Zobrazovací jednotky}. Internetový článek. Dostupné z: \url{http://old.spsemoh.cz/vyuka/zel/zobrazovaci-jednotky.htm} [cit.~2024-02-28].
+
+%11
+\bibitem{LCDsegDisplej} {\it Kladný 7 segmentový TN LCD displej}. Obrázek. Dostupné z: \url{https://sk.enrichlcddisplay.com/lcd/segment-lcd/positive-7-segment-tn-lcd-panel-display.html} [cit.~2024-02-28].
+
+%12
+\bibitem{7segmentdisplejPrincipAfunkcia} 
+Elektrolab. {\it ROZDELENIE, PRINCÍP A FUNKCIA 7 SEGMENTOVÉHO DISPLEJA}. Internetový článek. Dostupné z: \url{https://www.elektrolab.eu/blog/rozdelenie-princip-a-funkcia-7-segmentoveho-displeja} [cit.~2024-02-28].
+
+%13
+\bibitem{MaticovyLEDdisplej} Martin Sejkora. {\it Maticový LED displej}. Středoškolská technika 2016, ČVUT. Dostupné z: \url{http://stretech.fs.cvut.cz/2016/sbornik_2016/a-CD-stretech2016/Pardubice-Sejkora-Maticový%20displej.pdf} [cit.~2024-02-28].
+
+%14
+\bibitem{MaticovyDisplej} {\it Maticový displej}. Obrázek. Dostupné z: \url{https://www.tetronik.cz/produkty/produkt/6_displeje?parent=1} [cit.~2024-02-28].
+
+%15
+\bibitem{DisplejeLCD} {\it Displeje LCD}. Internetový článek. Dostupné z: \url{https://eluc.ikap.cz/verejne/lekce/627} [cit.~2024-02-28].
+
+%16
+\bibitem{ZobrazovaciGrafickaZarizeni} Michal Křížek. {\it Zobrazovací grafická zařízení}. Bakalářská práce. Dostupné z: \url{https://theses.cz/id/fegqtw/69380-157735417.pdf} [cit.~2024-02-28].
+
+%17
+\bibitem{TFTLCDdisplej} {\it 5" palcový TFT LCD displej 800x480 40pin dotyk}. Obrázek. Dostupné z: \url{https://www.briv.cz/p/5128/5-palcovy-tft-lcd-displej-800x480-40pin-dotyk} [cit.~2024-02-28].
+
+%18
+\bibitem{OLEDDisplay} {\it EA OLEDL128-6GGA - OLED Display 128 x 64 Žlutý, Display Visions}. Obrázek. Dostupné z: \url{https://www.distrelec.cz/cs/oled-display-128-64-zluty-display-visions-ea-oledl128-6gga/p/30108668} [cit.~2024-02-28].
+
+%19
+\bibitem{EinkToply} Jan Šimečík. {\it Elektronický papír: Co je e-ink displej a jaké je jeho využití?}. Internetový článek. Dostupné z: \url{https://toply.cz/ctecky-knih/elektronicky-papir-e-ink/} [cit.~2024-02-28].
+
+%20
+\bibitem{E-Ink800x480px} {\it E-Ink 7,5"800x480px}. Obrázek. Dostupné z: {\tt https://botland.cz/e-papir-displeje/9891-e-papir-e-ink-75\\-800x480px-displej-s-prekrytim-hat-pro-raspberry-pi-\\waveshare-13504-5904422338558.html} [cit.~2024-02-28].
+
+%21
+\bibitem{ONYXBOOXMIRAPRO} {\it ONYX BOOX MIRA PRO 25,3"}. Obrázek. Dostupné z: \url{https://www.ebook-ctecky.cz/onyx-boox-mira-pro-25-3-stojan#tb1=1} [cit.~2024-02-28].
+
+%22
+\bibitem{Mereniteploty} {\it Měření teploty}. Internetový článek. Dostupné z: \url{https://uprt.vscht.cz/kminekm/mrt/F4/F4k43-tepl.htm} [cit.~2024-02-28].
+
+%23
+\bibitem{AutodeskFusion360} Autodesk. {\it Autodesk Fusion 360}. Software. Dostupné z: \url{https://www.autodesk.cz/products/fusion-360/overview?term=1-YEAR&tab=subscription} [cit.~2024-02-28].
+
+%24
+\bibitem{KiCad} {\it KiCad 7.0}. Software. Dostupné z: \url{https://www.kicad.org} [cit.~2024-02-28].
+
+%25
+\bibitem{A3144Hall} {\it A3144 Hall Effect Sensor Pinout}. Obrázek. Dostupné z: \url{https://www.jakelectronics.com/subject/a3144-hall-effect-sensor-datasheet-circuit-and-pinout} [cit.~2024-02-28].
+
+%26
+\bibitem{ArduinoIDE} Arduino. {\it Arduino IDE 2.3.2}. Software. Dostupné z: \url{https://www.arduino.cc/en/software} [cit.~2024-02-28].
+
+%27
+\bibitem{Illustrator} Adobe. {\it Adobe Illustrator}. Software. Dostupné z: \url{https://www.adobe.com/cz/products/illustrator.html} [cit.~2024-02-28].
+
+%28
+\bibitem{Image2Lcd} {\it Image2Lcd Ver3.2}. Software. Dostupné z: \url{https://www.e-paper-display.com/download_detail/downloadsId=625.html} [cit.~2024-02-28].
+
+%29
+\bibitem{Wire} {\it Wire}. Knihovna. Dostupné z: \url{https://www.arduino.cc/reference/en/language/functions/communication/wire/} [cit.~2024-02-28].
+
+%30
+\bibitem{AdafruitSensor} Adafruit Industries. {\it \hbox{Adafruit\_Sensor}}. Knihovna. Dostupné z: \url{https://github.com/adafruit/Adafruit_Sensor/blob/master/Adafruit_Sensor.h} [cit.~2024-02-28].
+
+%31
+\bibitem{AdafruitBMP280Library} Adafruit Industries. {\it \hbox{Adafruit\_BMP280\_Library}}. Knihovna. Dostupné z: \url{https://github.com/adafruit/Adafruit_BMP280_Library} [cit.~2024-02-28].
+
+%32
+\bibitem{DHTsensorLibrary} {\it DHT sensor library}. Knihovna. Dostupné z: \url{https://www.arduino.cc/reference/en/libraries/dht-sensor-library/} [cit.~2024-02-28].
+
+%33
+\bibitem{RHASK} Paul Stoffregen. {\it \hbox{RH\_ASK}}. Knihovna. Dostupné z: \url{https://github.com/PaulStoffregen/RadioHead/blob/master/RH_ASK.h} [cit.~2024-02-28].
+
+%34
+\bibitem{SPI} {\it SPI}. Knihovna. Dostupné z: \url{https://www.arduino.cc/reference/en/language/functions/communication/spi/} [cit.~2024-02-28].
+
+%35
+\bibitem{WiFi} {\it WiFi}. Knihovna. Dostupné z: \url{https://www.arduino.cc/reference/en/libraries/wifi/} [cit.~2024-02-28].
+
+%36
+\bibitem{WiFiClient} Espressif Systems. {\it WiFiClient}. Knihovna. Dostupné z: \url{https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFiClient.h} [cit.~2024-02-28].
+
+%37
+\bibitem{WebServer} Espressif Systems. {\it WebServer}. Knihovna. Dostupné z: \url{https://github.com/espressif/arduino-esp32/blob/master/libraries/WebServer/src/WebServer.h} [cit.~2024-02-28].
+
+%38
+\bibitem{ESPmDNS} Espressif Systems. {\it ESPmDNS}. Knihovna. Dostupné z: \url{https://github.com/espressif/arduino-esp32/blob/master/libraries/ESPmDNS/src/ESPmDNS.h} [cit.~2024-02-28].
+
+%39
+\bibitem{HTTPClient} Espressif Systems. {\it HTTPClient}. Knihovna. Dostupné z: \url{https://github.com/espressif/arduino-esp32/blob/master/libraries/HTTPClient/src/HTTPClient.h} [cit.~2024-02-28].
+
+%40
+\bibitem{FS} Espressif Systems. {\it FS}. Knihovna. Dostupné z: \url{https://github.com/espressif/arduino-esp32/blob/master/libraries/FS/src/FS.h} [cit.~2024-02-28].
+
+%41
+\bibitem{SD} Arduino Libraries. {\it SD}. Knihovna. Dostupné z: \url{https://github.com/arduino-libraries/SD} [cit.~2024-02-28].
+
+%42
+\bibitem{time} {\it time}. Knihovna. Dostupné z: \url{https://www.tutorialspoint.com/c_standard_library/time_h.htm} [cit.~2024-02-28].
+
+%43
+\bibitem{ErriezMHZ19B} Erriez. {\it ErriezMHZ19B}. Knihovna. Dostupné z: \url{https://github.com/Erriez/ErriezMHZ19B} [cit.~2024-02-28].
+
+%44
+\bibitem{AHTxx} enjoyneering. {\it AHTxx}. Knihovna. Dostupné z: \url{https://github.com/enjoyneering/AHTxx/blob/main/src/AHTxx.h} [cit.~2024-02-28].
+
+%45
+\bibitem{Alojz} {\it Alojz}. Internetová stránka. Dostupné z: \url{https://alojz.cz/praha} [cit.~2024-02-28].
+
+%46
+\bibitem{EpaperLibrary} GoodDisplay. {\it E-Paper Library}. Ukázkový kód. Dostupné z: \url{https://www.good-display.com/companyfile/24/} [cit.~2024-02-28].
+
+\end{thebibliography}
+\appendix
+\input{LaTeX sablona IB/prilohy}
+
+\end{document}
