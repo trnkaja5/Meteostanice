@@ -9,8 +9,8 @@
 #include <WiFi.h>
 #include <time.h>
 
-const char* ssid     = "Wifi_405";       //realme GT Master Edition
-const char* password = "2005*2007";      //p6smi4ia
+const char* ssid     = "nazev";
+const char* password = "heslo";
 
 long timezone = 1; 
 byte daysavetime = 1;
